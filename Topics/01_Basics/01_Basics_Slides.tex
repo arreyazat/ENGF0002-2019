@@ -1,0 +1,702 @@
+\documentclass{beamer} % [aspectratio=169]
+\usetheme{ucl}
+\setbeamercolor{banner}{bg=darkred}
+\setbeamersize{description width=2em}
+\setbeamertemplate{navigation symbols}{\vspace{-2ex}} 
+
+\usepackage[T1]{fontenc} % Turn £ into $
+\usepackage{minted}
+\usemintedstyle{emacs}
+
+
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{url}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{url}
+
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
+
+\newcommand\emc[1]{\textcolor{midred}{\textbf{#1}}}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\author{Prof.\ Mark Handley \\ University College London, UK\\
+\small{Based on slides from George Danezis}}
+\title{Basics of Computer Programming \\ \& Software Engineering.}
+\subtitle{ENGF0002: Design and Professional Skills }
+% \institute{}
+\date{Term 1, 2019}
+
+\begin{document}
+\nobibliography*
+
+\frame{
+\titlepage
+}
+
+\section{Introduction}
+
+\frame{
+\frametitle{Introducing Basics.}
+
+In the `Basics' topic we will:
+\begin{itemize}
+\item Introduce basic Python \emc{language} concepts.
+\item Illustrate \emc{algorithms}, to perform numerical computations.
+\item Expose you to the problems of \emc{correctness}, and \emc{testing}.
+\item Introduce \emc{good practices} when programming.
+\end{itemize}
+
+} 
+
+
+\frame{
+\frametitle{What is Computer Science \& Software Engineering?}
+
+Computer Science:
+\begin{itemize}
+\item Studies the nature of \emc{information, computation, complexity} of algorithms, and their \emc{correctness}.
+\item Deep mathematical foundations, including logic, algebra and probability theory.
+\end{itemize}
+
+Software Engineering:
+\begin{itemize}
+\item Studies how teams can repeatably \emc{build high quality, correct, usable and efficient software}, to meet \emc{people's needs}.
+\item Programming is a foundational and important part of it.
+\end{itemize}
+
+The two are interlinked, and we will study them together.
+} 
+
+\frame{
+\frametitle{Programming \& languages (I).}
+
+Programming \& Programmability: 
+\begin{itemize}
+	\item A device is programmable if it allows a programmer (developer, engineer) to \emc{alter its behavior}. This is the act of programming.
+	\item We usually think of a device as programmable, when the \emc{program itself takes the form or information}, rather than physical modification.
+	\item A computer is the \emc{ultimate programmable device}, and can execute all computations. Simpler ones include video recording devices, microwave ovens, and alarm clocks.
+	\item \emc{Programming is specializing} a device to solve \emc{a problem that people have}.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Programming \& languages (II).}
+
+Programming Languages:
+\begin{itemize}
+	\item The \emc{information describing the program} (code), is expressed in a programming language.
+	\item \emc{Trivial} programming languages: button pressed to program an alarm clock. They are very \emc{low-level ways}, and lead to errors and inflexibility.
+	\item Full computers are programmed in \emc{higher-level formal languages}. Programmers may express their intent directly, build complex abstractions, and compose programs from smaller fragments.
+	\item Programming languages are formal languages but also \emc{human languages}. Programmers, use them to \emc{express and communicate their intent}.
+\end{itemize}
+
+}
+
+
+\frame{
+\frametitle{Why Python?} 
+\begin{itemize}
+	\item \emc{Real-world}, widely used programming language \\(3rd in 2019 TIOBE ranking.)
+	\item \emc{Multi-paradigm}: scripting, procedural, functional elements, object oriented, generics.
+	\item Extensive \emc{eco-system} of tools and libraries. Great documentation.
+	\item Significant \emc{industrial uses}.
+	\item \emc{High-productivity}, and perfect for rapid prototyping.
+\end{itemize}
+
+\vspace{3mm}
+A \emc{weakness} we will turn to a strenth:
+\begin{itemize}
+	\item It does not force you to adopt \emc{good programming practices}.
+	\item It \emc{supports them}, but you must learn them!
+\end{itemize}
+
+
+}
+
+\frame{
+	
+\frametitle{Other languages you might want to learn.}
+
+\emc{Different problems} may require \emc{different tools}:
+\begin{itemize}
+\item Lower-level: Rust$*$, C++, \emc{C} --- COMP0002.
+\item Static typing: Go$*$, \emc{Java}, C\# --- COMP0004.
+\item Web: Javascript$*$.
+\item Functional: \emc{Haskell}, Scala$*$ --- COMP0002.
+\end{itemize}
+
+
+\vspace{1mm}
+$*$ - trendy languages at the moment
+
+\vspace{3mm}
+All programming languages mix and match a few principles. \\
+Good computer scientists \emc{know those principles},\\ and can \emc{work in any language}.
+}
+
+\begin{frame}[fragile]
+\frametitle{Using Python interactively.} 
+
+\begin{itemize}
+	\item Python 3.7. (\url{https://www.python.org/about/gettingstarted/})
+	\item Open a command line console, and run the Python interpreter.
+	\item Type your fist command: \mint{Python}{print("Hello World!")}
+	\item You should see it executing!
+
+\begin{Verbatim}[fontsize=\footnotesize]
+mjh$ python
+Python 3.7.2 (default, Dec 30 2018, 08:59:00) 
+[Clang 9.1.0 (clang-902.0.39.2)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print("Hello World!")
+Hello World!
+>>> 
+\end{Verbatim}
+
+\end{itemize}
+
+\end{frame}
+
+
+\frame{
+\frametitle{Key resources and tools.} 
+
+The interactive interpreter is only good for quick experimentation.
+\begin{itemize}
+	\item \emc{Code editor}: atom (hip!), Sublime (hip!), Visual Studio Code. \\ Must haves: Good syntax highlighting, good handling of files \& folders, whitespace, looks very cool.
+	\item \emc{Browser} with Python \emc{Documentation}: \url{https://docs.python.org/3/}. \\ (including Python \emc{tutorial} and \emc{Library reference}.)
+	\item \emc{Command line} \& learn how to use it. \url{https://www.lynda.com/Linux-tutorials/Learn-Linux-Command-Line-Basics/435539-2.html}
+	\item \emc{Stack Overflow} for Q\&A. \\ \url{https://stackoverflow.com/}
+	\item \emc{Install pytest}. \url{https://docs.pytest.org/}
+\end{itemize}
+}
+
+\frame{
+\frametitle{Your physical \& mental well being.} 
+
+\begin{itemize}
+\item Approach the physical activity of programming with \emc{professionalism}.
+\item Think of the \emc{ergonomics} of your physical environment: chair height, desk, posture, keyboard style, monitor type and positioning.
+\item Make sure you \emc{enjoy your working environment}: light, sounds, distractions.
+\item \emc{Take breaks}, at least every hour.
+\end{itemize}
+
+}
+
+\begin{frame}[fragile]
+\frametitle{The `Hello World!' program in Python.} 
+
+Programs live in files. A simple Python program:
+
+	\inputminted[
+		xleftmargin=1.4em,
+		frame=lines,
+		framesep=2mm,
+		%baselinestretch=1.2,
+		bgcolor=stone,
+		fontsize=\footnotesize,
+		linenos
+	]{python}{src/hello_world.py}
+
+Execute your first program, by running:
+\begin{Verbatim}
+$ python3 hello_world.py
+Hello World!
+\end{Verbatim}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Comments}
+
+Comments are not executed by Python, but form part of your program.
+\begin{itemize}
+\item Comments \emc{communicate intent} to your future self and others.
+\item Express in comments concepts you cannot directly express in code.
+\item Prefer to express concepts directly in code.
+\item Keep comments local to the relevant code.
+\item Do not overcomment; avoid duplicate, redundant or wrong comments. 
+\item Every comment will have to be maintained in the future.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Whitespace.}
+
+Python is \emc{sensitive to indentation} using whitespace. Use 3 or 4 spaces (not a tab) to indent blocks of code. More about this later \ldots.
+
+	\inputminted[
+		xleftmargin=1.4em,
+		frame=lines,
+		framesep=2mm,
+		%baselinestretch=1.2,
+		bgcolor=stone,
+		fontsize=\footnotesize,
+		linenos
+	]{python}{src/hello_world.py}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{How do we know a program does what it should?}
+
+\emc{Correctness is the most important problem} in software engineering and computer science!
+
+\vspace{3mm}
+\emc{Testing is the key technique} to produce high quality, correct programs. It is an activity that is continuous, and performed in parallel with programming.
+
+\vspace{3mm}
+Complimentary techniques for ensuring program correctness include \emc{formal verification}. Those are more expensive, but necessary to reason about very complex problems.
+
+\vspace{3mm}
+Finally, formal periodic \emc{code reviews}, or continuous reflection through \emc{pair programming} also improve quality.
+
+\end{frame}
+
+
+\frame{
+\frametitle{Test Code Continuously.} 
+
+\emc{Testing} is the most important technique to gain confidence a program does what it should:
+\begin{itemize}
+	\item Unit Test every 2-5 lines of code you write. Think how to \emc{test every snippet of code} just before, while, or just after you write it.
+	\item Use a mature \emc{tool for testing} your programs. We will use \texttt{pytest}. \url{https://docs.pytest.org/}.
+	\item \emc{Different testing techniques} for code correctness, integration, security, performance and user experience.
+	\item Shortcomings of testing: \emc{lack of completeness}.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{Testing the `Hello World!' program.} 
+
+\emc{Tests are snippets of code} executing parts of your program. \\ Eg.\ the test of the simple Python program is:
+
+	\inputminted[
+		xleftmargin=1.4em,
+		frame=lines,
+		framesep=2mm,
+		%baselinestretch=1.2,
+		bgcolor=stone,
+		fontsize=\footnotesize,
+		linenos
+	]{python}{src/test_hello_world.py}
+
+We run the \emc{test suite}, by executing \texttt{pytest test\_hello\_world.py} on the command line.
+
+
+}
+
+\frame{
+\frametitle{Code documentation and its tests. } 
+
+\emc{Code documentation} is not executed, but forms part of the program. It is useful to your future self, or others that want to use part of your program. Hence, \emc{document reusable units of code}.
+
+	\inputminted[
+		xleftmargin=1.4em,
+		highlightlines={6-7},
+		frame=lines,
+		framesep=2mm,
+		%baselinestretch=1.2,
+		bgcolor=stone,
+		fontsize=\footnotesize, 
+		linenos
+	]{python}{src/hello_world_doc.py}
+
+You must \emc{test code in documentation}. \\ \texttt{pytest -vs --doctest-modules test\_hello\_world.py}.
+
+}
+
+
+\begin{frame}[fragile]
+
+\frametitle{Example of a successful test run. }
+
+Executing \texttt{pytest} runs all tests in functions named \texttt{test\_*} and documentation strings.
+
+\begin{Verbatim}[fontsize=\scriptsize]
+$ pytest -vs --doctest-modules src/*hello*.py
+=================================== test session starts ====================================
+platform darwin -- Python 3.7.0, pytest-3.7.4, py-1.6.0, pluggy-0.7.1 -- /opt/local/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
+cachedir: .pytest_cache
+rootdir: /Users/mjh/teaching/engf0002/Design_and_Professional_Skills/Topics/01_Basics, inifile:
+collected 2 items                                                                          
+
+src/hello_world_doc.py::hello_world_doc.hello_world PASSED
+src/test_hello_world.py::test_hello_world PASSED
+
+================================= 2 passed in 0.02 seconds =================================
+\end{Verbatim}
+
+\end{frame}
+
+\frame{
+\frametitle{Summary and next steps.}
+
+The rhythm-of-the-programming-business:
+\begin{itemize}
+	\item \emc{Think} of the problem $\rightarrow$ \emc{Code} feature (2-5 lines) $\rightarrow$ \emc{Write test} for feature $\rightarrow$ Run \emc{all} tests $\rightarrow$ Fix until \emc{all tests pass} $\rightarrow$ Think \ldots
+	\item Working programmers \emc{run tests a few times per minute}.
+	\item Testing practice imposes an \emc{incremental approach} to software building.
+	\item Professional standards: aspire to deliver programs with \emc{zero bugs}. 
+	Remember that \emc{`bugs' may cost millions or even kill}.
+\end{itemize}
+
+\vspace{5mm}
+Still to cover: functions and function calls (\texttt{def}, \texttt{()}), modules (\texttt{from}, \texttt{import}) and a lot more python \ldots
+
+}
+
+\section{Algorithms}
+
+\begin{frame}
+\frametitle{What is an `algorithm'?} 
+
+An algorithm describes a sequence of steps leading to the solution of a computational problem.
+
+\vspace{5mm}
+You are familiar with a number of algorithms from maths:
+\begin{itemize}
+\item How to perform long multiplication and division with a pencil and paper.
+\item How to find the roots of a quadratic equation $ax^2+bx+c = 0$.
+\item How to expand brackets for $(a+b)(c+d) = ?$
+\end{itemize}
+
+\begin{block}{Beyond maths \ldots}
+Once we express wider parts of the world as information, algorithms can solve more exciting tasks: eg.\ rendering a 3D scene in a computer game, encrypt communications, build interactive social networks on-line, and program cars to drive autonomously.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lifts}
+
+  \begin{block}{Problem Statement}
+    A building has a lift.\\
+    Inside the lift are buttons to choose floors.\\
+    Outside the lift are buttons to call the lift.\\
+    {\bf How should the lift choose which floor to go to next?}
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lifts}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+\begin{frame}
+  \vspace{-16mm}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \end{itemize}
+  \end{variableblock}
+\end{frame}
+
+\begin{frame}
+  \vspace{-16mm}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim1.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \vspace{-16mm}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim2.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \vspace{-16mm}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim3.pdf}
+
+\end{frame}
+
+\begin{frame}
+  %\vspace{-16mm}
+  \begin{block}{Algorithm 1}
+    Go to the nearest floor that is selected.
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \end{itemize}
+  \end{variableblock}
+  \vspace{5mm}
+  \begin{block}{Diagnosis}
+    Need to prioritse going to the floor selected by people in the lift.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Lifts}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people waiting for the lift starve to death because the lift always goes past their floor.
+    \end{itemize}
+  \end{variableblock}
+\end{frame}
+
+
+\begin{frame}
+  \vspace{-10mm}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim4.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \vspace{-10mm}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim5.pdf}
+\end{frame}
+
+\begin{frame}
+  \vspace{-10mm}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim6.pdf}
+\end{frame}
+
+\begin{frame}
+  \vspace{-2mm}
+  \begin{block}{Algorithm 2}
+    \begin{itemize}
+    \item Go to the nearest floor selected by people in the lift.
+    \item If no floor selected in the lift, go to nearest floor where someone has pressed a call button.
+    \end{itemize}
+  \end{block}
+  \vspace{1mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \end{itemize}
+  \end{variableblock}
+  \vspace{1mm}
+  \begin{block}{Diagnosis}
+    Should not skip a floor where someone wants to go in the direction the lift is going.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \item Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \item If no floor is selected, go to the nearest floor where someone has pressed a button.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \item Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \item If no floor is selected, go to the nearest floor where someone has pressed a button.
+    \end{itemize}
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \end{itemize}
+  \end{variableblock}
+\end{frame}
+
+\begin{frame}
+  \vspace{-11mm}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \vspace{-1mm}
+      \item \small Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \vspace{-1mm}
+      \item \small If no floor is selected, go to the nearest floor where someone has pressed a button.
+      \vspace{-1mm}
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim7.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \vspace{-11mm}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \vspace{-1mm}
+      \item \small Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \vspace{-1mm}
+      \item \small If no floor is selected, go to the nearest floor where someone has pressed a button.
+      \vspace{-1mm}
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim8.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \vspace{-11mm}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \vspace{-1mm}
+      \item \small Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \vspace{-1mm}
+      \item \small If no floor is selected, go to the nearest floor where someone has pressed a button.
+      \vspace{-1mm}
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[width=120mm, trim=0mm 0mm 0mm 50mm, clip=true]{img/lift2-anim9.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Algorithm 3}
+    \begin{itemize}
+      \item Go to the next floor selected by people in the lift, but don't go past a floor where someone wants to go in the same direction the lift is going.
+      \item If no floor is selected, go to the nearest floor where someone has pressed a button.
+    \end{itemize}
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \end{itemize}
+  \end{variableblock}
+  \vspace{1mm}
+  \begin{block}{Diagnosis}
+    Lift should not turn round if it's heading towards people who are waiting.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Algorithm 4}
+    \begin{itemize}
+    \item Go in one direction, stopping at floors where:
+      \begin{itemize}
+      \item people outside want to go in that direction, or
+      \item where people in the lift want to go in that direction.
+        \end{itemize}
+       \item Change direction only when there are no more selected floors or call buttons pressed in that direction.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+  
+\begin{frame}
+  \begin{block}{Algorithm 4}
+    \begin{itemize}
+    \item Go in one direction, stopping at floors where:
+      \begin{itemize}
+      \item people outside want to go in that direction, or
+      \item where people in the lift want to go in that direction.
+        \end{itemize}
+       \item Change direction only when there are no more selected floors or call buttons pressed in that direction.
+    \end{itemize}
+  \end{block}
+  \vspace{5mm}
+  \begin{variableblock}{Bug reports}{bg=stone,fg=black}{bg=black,fg=white}
+    \begin{itemize}
+    \item --- NO BUG REPORTS FILED ---
+    \end{itemize}
+  \end{variableblock}
+\end{frame}
+
+  
+\begin{frame}
+  \begin{block}{Challenge 1}
+    \begin{itemize}
+    \item What should the lift do if no call button is pressed?
+    \end{itemize}
+  \end{block}
+  \centering
+  \begin{block}{Challenge 2}
+    \begin{itemize}
+    \item Extend the algorithm so it works efficiently to control two lifts.
+    \end{itemize}
+  \end{block}
+  \centering
+  \includegraphics[height=40mm]{img/elevator.jpg}
+\end{frame}
+
+\bibliographystyle{alpha}
+\nobibliography{references}
+
+\end{document}
