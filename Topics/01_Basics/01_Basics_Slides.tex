@@ -68,16 +68,16 @@ In the `Basics' topic we will:
 \frame{
 \frametitle{What is Computer Science \& Software Engineering?}
 
-Computer Science:
+{\bf Computer Science:}
 \begin{itemize}
 \item Studies the nature of \emc{information, computation, complexity} of algorithms, and their \emc{correctness}.
 \item Deep mathematical foundations, including logic, algebra and probability theory.
 \end{itemize}
 
-Software Engineering:
+{\bf Software Engineering:}
 \begin{itemize}
 \item Studies how teams can repeatably \emc{build high quality, correct, usable and efficient software}, to meet \emc{people's needs}.
-\item Programming is a foundational and important part of it.
+\item Programming is foundational and an important part of it.
 \end{itemize}
 
 The two are interlinked, and we will study them together.
@@ -319,7 +319,7 @@ We run the \emc{test suite}, by executing \texttt{pytest test\_hello\_world.py} 
 		linenos
 	]{python}{src/hello_world_doc.py}
 
-You must \emc{test code in documentation}. \\ \texttt{pytest -vs --doctest-modules test\_hello\_world.py}.
+You must \emc{test code in documentation}. \\ \texttt{pytest -vs -${\texttt -}$doctest-modules test\_hello\_world.py}.
 
 }
 
@@ -488,7 +488,7 @@ Once we express wider parts of the world as information, algorithms can solve mo
   \vspace{5mm}
   \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
     \begin{itemize}
-    \item Under certain workloads, people waiting for the lift starve to death because the lift always goes past their floor.
+    \item Under certain workloads, people waiting for the lift starve to death.
     \end{itemize}
   \end{variableblock}
 \end{frame}
@@ -540,9 +540,9 @@ Once we express wider parts of the world as information, algorithms can solve mo
     \end{itemize}
   \end{block}
   \vspace{1mm}
-  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+  \begin{variableblock}{Revised Bug report}{bg=stone,fg=black}{bg=black,fg=white}
     \begin{itemize}
-    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \item Under certain workloads, people waiting for the lift starve to death because the lift always goes past their floor.
     \end{itemize}
   \end{variableblock}
   \vspace{1mm}
@@ -572,7 +572,7 @@ Once we express wider parts of the world as information, algorithms can solve mo
   \vspace{5mm}
   \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
     \begin{itemize}
-    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \item Under certain workloads, people waiting for the lift starve to death.
     \end{itemize}
   \end{variableblock}
 \end{frame}
@@ -632,10 +632,10 @@ Once we express wider parts of the world as information, algorithms can solve mo
       \item If no floor is selected, go to the nearest floor where someone has pressed a button.
     \end{itemize}
   \end{block}
-  \vspace{5mm}
-  \begin{variableblock}{Bug report}{bg=stone,fg=black}{bg=black,fg=white}
+%  \vspace{5mm}
+  \begin{variableblock}{Revised Bug report}{bg=stone,fg=black}{bg=black,fg=white}
     \begin{itemize}
-    \item Under certain workloads, people in the lift starve to death before they reach the destination floor.
+    \item Under certain workloads, people waiting for the lift starve to death before it reaches their floor.
     \end{itemize}
   \end{variableblock}
   \vspace{1mm}
