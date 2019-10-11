@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+\node (n0) {1};
+\draw (n0.north west) rectangle (n0.south east);
+\node [right=0.1cm of n0] (n1) {1};
+\draw (n1.north west) rectangle (n1.south east);
+\node [right=0.1cm of n1] (n2) {2};
+\draw (n2.north west) rectangle (n2.south east);
+\node [right=0.1cm of n2] (n3) {5};
+\draw (n3.north west) rectangle (n3.south east);
+\node [right=0.1cm of n3] (n4) {5};
+\draw (n4.north west) rectangle (n4.south east);
+\node [right=0.1cm of n4] (n5) {10};
+\draw (n5.north west) rectangle (n5.south east);
+\node [right=0.1cm of n5] (n6) {10};
+\draw (n6.north west) rectangle (n6.south east);
+\node [right=0.1cm of n6] (n7) {11};
+\draw (n7.north west) rectangle (n7.south east);
+\node [right=0.1cm of n7] (n8) {17};
+\draw (n8.north west) rectangle (n8.south east);
+\node [right=0.1cm of n8] (n9) {17};
+\draw (n9.north west) rectangle (n9.south east);
+\node [right=0.1cm of n9] (n10) {100};
+\draw (n10.north west) rectangle (n10.south east);
+\node [right=0.1cm of n10] (n11) {110};
+\draw (n11.north west) rectangle (n11.south east);
+\node [right=0.1cm of n11] (n12) {112};
+\draw (n12.north west) rectangle (n12.south east);
+\node [right=0.1cm of n12] (n13) {117};
+\draw (n13.north west) rectangle (n13.south east);
+\node [right=0.1cm of n13] (n14) {};
+\draw (n14.north west) rectangle (n14.south east);
+\node<1> [above=0.2cm of n0] (s1) {s};\node<1> [above=0.2cm of n14] (e1) {e};\draw<1> [->] (s1) -- (n0);\draw<1> [->] (e1) -- (n14);\node<2> [above=0.2cm of n0] (s2) {s};\node<2> [above=0.2cm of n14] (e2) {e};\draw<2> [->] (s2) -- (n0);\draw<2> [->] (e2) -- (n14);\node<2> [above=0.2cm of n7] (m2) {m};\draw<2> [->] (m2) -- (n7);\node<3> [above=0.2cm of n7] (s3) {s};\node<3> [above=0.2cm of n14] (e3) {e};\draw<3> [->] (s3) -- (n7);\draw<3> [->] (e3) -- (n14);\node<3> [above=0.2cm of n10] (m3) {m};\draw<3> [->] (m3) -- (n10);\node<4> [above=0.2cm of n7] (s4) {s};\node<4> [above=0.2cm of n10] (e4) {e};\draw<4> [->] (s4) -- (n7);\draw<4> [->] (e4) -- (n10);\node<4> [above=0.2cm of n8] (m4) {m};\draw<4> [->] (m4) -- (n8);\node<5> [above=0.2cm of n8] (s5) {s};\node<5> [above=0.2cm of n10] (e5) {e};\draw<5> [->] (s5) -- (n8);\draw<5> [->] (e5) -- (n10);\node<5> [above=0.2cm of n9] (m5) {m};\draw<5> [->] (m5) -- (n9);\node<6> [above=0.2cm of n9] (s6) {s};\node<6> [above=0.2cm of n10] (e6) {e};\draw<6> [->] (s6) -- (n9);\draw<6> [->] (e6) -- (n10);\end{tikzpicture}
