@@ -1,4 +1,4 @@
-from linked_list import Node
+from simple_node import Node
 
 class Queue():
     def __init__(self):
@@ -23,7 +23,7 @@ class Queue():
         self.head = node.next
         if self.head == None:
             self.tail = None
-        return node.get_value()
+        return node.value
 
     # is the queue empty?
     def is_empty(self):
